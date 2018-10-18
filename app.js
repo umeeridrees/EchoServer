@@ -6,6 +6,7 @@ const app = express();
 
 const productroutes = require('./api/routes/product');
 const orderroutes = require('./api/routes/order');
+const homeroutes = require('./api/routes/home');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/product', productroutes);
 app.use('/order', orderroutes);
+app.use('', homeroutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not Found.');

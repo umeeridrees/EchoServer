@@ -1,14 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/hello', (req, res, next) => {
-    const message = req.body.message;
-
-    res.status(200).json({
-        message: message
-    });
-});
-
 router.get('/', (req, res, next) => {
     res.status(200).json({
         message: "This is GET to products."
