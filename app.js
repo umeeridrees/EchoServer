@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const productroutes = require('./api/routes/product');
-const orderroutes = require('./api/routes/order');
+const homeroutes = require('./api/routes/home');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -22,15 +21,18 @@ app.use(bodyParser.urlencoded({extended: false}));
     }
 });*/
 
-app.use('/product', productroutes);
-app.use('/order', orderroutes);
 
+//use custom routes
+app.use('', homeroutes);
+
+//Handle 404 error
 app.use((req, res, next) => {
     const error = new Error('Not Found.');
     error.status = 404;
     next(error);
 });
 
+//Handle server error
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
     res.json({
@@ -38,7 +40,6 @@ app.use((error, req, res, next) => {
             message: error.message
         }
     });
-
 });
 
 module.exports = app;
