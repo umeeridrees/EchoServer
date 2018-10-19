@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/hello', (req, res, next) => {
+// echo actionMethod 
+router.post('/echo', (req, res, next) => {
     const message = req.body.message;
-    res.status(200).send(message);
+    var obj = { "message": message };
+    
+    res.status(200).send(JSON.stringify(obj));
 });
 
 module.exports = router;
